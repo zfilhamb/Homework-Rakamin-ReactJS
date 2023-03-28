@@ -79,7 +79,7 @@ function TictactoeContextProvider(props) {
     >
       <ScoreBoard scores={scores} xPlaying={xPlaying} />
       <Board board={board} onClick={gameOver ? resetBoard : handleBoxClick}/>
-      <ResetButton/>
+      <ResetButton resetBoard={resetBoard} />
     </TictactoeContext.Provider>
   )
 }
