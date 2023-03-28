@@ -9,6 +9,5 @@ export const Board = ({board, onClick}) => {
                 return <Box value ={value} onClick={() => value === null && onClick(index)} />
             })}
             </div>
-            
     )
 }

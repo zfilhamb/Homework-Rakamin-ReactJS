@@ -1,10 +1,13 @@
 import './App.css';
-import React , {useState} from 'react';
+import {useState, createContext} from 'react';
 import { Board } from './components/Board';
 import { ScoreBoard } from './components/ScoreBoard';
 import { ResetButton } from './components/RessetButton';
 
-function App() {
+const TictactoeContext = createContext();
+
+
+function TictactoeContextProvider(props) {
 
   const winCondition = [
     [0, 1, 2],
@@ -63,12 +66,34 @@ function App() {
     setBoard(Array(9).fill(null));
   }
 
-  return (
-    <div className='App'>
+  return(
+    <TictactoeContext.Provider
+    value={{
+      board,
+      xPlaying,
+      scores,
+      gameOver,
+      handleBoxClick,
+      resetBoard,
+    }}
+    >
       <ScoreBoard scores={scores} xPlaying={xPlaying} />
       <Board board={board} onClick={gameOver ? resetBoard : handleBoxClick}/>
-      <ResetButton resetBoard={resetBoard} />
-    </div>
+      <ResetButton/>
+    </TictactoeContext.Provider>
+  )
+}
+ 
+
+
+function App() {
+
+ 
+  return (
+    <div className='App'>
+      <TictactoeContextProvider>
+      </TictactoeContextProvider>
+    </div>  
   )
 }
 
